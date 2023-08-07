@@ -6,6 +6,10 @@ import { fileURLToPath, URL } from 'url'
 export default defineConfig({
   plugins: [vue()],
   resolve: {
-    alias: [{ find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) }],
+    alias: [
+      { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+      { find: '@common', replacement: fileURLToPath(new URL('./src/common', import.meta.url)) },
+      { find: '@store', replacement: fileURLToPath(new URL('./src/stores', import.meta.url)) },
+    ],
   },
 })
