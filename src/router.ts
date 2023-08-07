@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue'
+import Home from '@/App.vue'
+import Login from '@/pages/login/index.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -10,11 +11,7 @@ export default createRouter({
     },
     {
       path: '/login',
-      component: () => import('@/pages/login/index.vue'),
-    },
-    {
-      path: '/contact',
-      component: () => import('@/views/Contact.vue'),
+      component: Login,
     },
   ],
 })
