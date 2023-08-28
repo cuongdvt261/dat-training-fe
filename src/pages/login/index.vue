@@ -6,6 +6,7 @@
         name="username"
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="text"
+        v-model="formData.username"
         placeholder="Username"
       />
       <ErrorMessage name="username" />
@@ -16,6 +17,7 @@
         name="password"
         class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
         type="password"
+        v-model="formData.password"
         placeholder="******************"
       />
       <ErrorMessage name="password" />
@@ -38,16 +40,24 @@
 <script setup lang="ts">
 import { string, object } from 'yup'
 import { Form, Field, ErrorMessage } from 'vee-validate'
+import axios from 'axios'
 
 const schema = object({
   username: string().required(),
   password: string()
     .required('No password provided.')
     .min(8, 'Password is too short - should be 8 chars minimum.')
-    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+    .matches(/[a-zA-Z0-9]/, 'Password can only contain letters and numbers.'),
 })
 
+let formData = {
+  username: '',
+  password: ''
+}
+
 function submitForm() {
-  return
+  axios
+    .post('http://localhost:8081/api/auth/signin', formData)
+    .then((Response) => console.log(Response))
 }
 </script>
