@@ -46,6 +46,7 @@ import { useToast } from 'vue-toast-notification'
 
 const $router = useRouter()
 const $toast = useToast()
+const $authStore = useAuthStore()
 
 let formData = {
   username: '',
@@ -62,9 +63,8 @@ const schema = object({
 
 async function submitForm() {
   try {
-    const authStore = useAuthStore()
     const { username, password } = formData
-    await authStore.login(username, password)
+    await $authStore.login(username, password)
     $router.push('/')
   } catch (err) {
     $toast.error((err as Error).message)

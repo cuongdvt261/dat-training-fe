@@ -17,8 +17,14 @@ export const useActions = defineStore('auth.actions', () => {
     localStorage.setItem('user', JSON.stringify(data))
   }
 
+  function logout() {
+    state.user = null
+    localStorage.removeItem('user')
+  }
+
   return {
     setUser,
     login,
+    logout,
   }
 })

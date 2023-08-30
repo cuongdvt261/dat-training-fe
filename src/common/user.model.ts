@@ -1,4 +1,9 @@
 export default interface UserInfo {
-  name: string
-  age: number
+  username: string
+  email: string
+  firstName: string
+  lastName: string | null | undefined
+  gender: string
+  image: string | null | undefined
+  token: string | null | undefined
 }
