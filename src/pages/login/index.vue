@@ -40,7 +40,6 @@
 <script setup lang="ts">
 import { string, object } from 'yup'
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import { useAuthStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toast-notification'
 
@@ -62,10 +61,20 @@ const schema = object({
 
 async function submitForm() {
   try {
-    const authStore = useAuthStore()
     const { username, password } = formData
-    await authStore.login(username, password)
-    $router.push('/')
+    const response = await fetch('https://dummyjson.com/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    })
+    if (response.ok) {
+      const data = await response.json()
+      console.log(data)
+      $router.push('/me')
+    }
   } catch (err) {
     $toast.error((err as Error).message)
   }
