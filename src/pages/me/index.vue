@@ -5,9 +5,9 @@
       <div class="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
         <div class="border-b px-4 pb-6">
           <div class="text-center my-4">
-            <img class="h-32 w-32 rounded-full border-4 border-white mx-auto my-4" :src="myInfo.image" alt="" />
+            <img class="h-32 w-32 rounded-full border-4 border-white mx-auto my-4" :src="myInfo?.image" alt="" />
             <div class="py-2">
-              <h3 class="font-bold text-2xl mb-1">{{ myInfo.firstName }} {{ myInfo.lastName }}</h3>
+              <h3 class="font-bold text-2xl mb-1">{{ myInfo?.firstName }} {{ myInfo?.lastName }}</h3>
               <div class="inline-flex text-gray-700 items-center">
                 <svg
                   class="h-5 w-5 text-gray-400 mr-1"
@@ -100,7 +100,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@store'
+import { useAuthStore } from '@/stores'
 
 const $authStore = useAuthStore()
 let myInfo = $authStore.user

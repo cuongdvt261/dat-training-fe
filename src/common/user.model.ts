@@ -4,6 +4,6 @@ export default interface UserInfo {
   firstName: string
   lastName: string | null | undefined
   gender: string
-  image: string | null | undefined
+  image: string
   token: string | null | undefined
 }
